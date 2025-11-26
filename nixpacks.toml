@@ -11,7 +11,7 @@ nixPkgs = [
   "php82Extensions.ctype",
   "php82Extensions.fileinfo",
   "php82Extensions.bcmath",
-  "composer",
+  "php82Packages.composer",
   "nodejs-18_x"
 ]
 
@@ -22,11 +22,7 @@ cmds = [
 ]
 
 [phases.build]
-nixLayers = ["php", "composer", "nodejs"]
-
-# Hapus bagian nixOverlays yang bermasalah
-# [phases.build.nixOverlays]
-# "https://github.com/railwayapp/nix-npm-overlay/archive/main.tar.gz" = "nodePackages"
+nixLayers = ["php", "php82Packages.composer", "nodejs"]
 
 [start]
-cmd = "php artisan migrate --force && php artisan"
+cmd = "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"
