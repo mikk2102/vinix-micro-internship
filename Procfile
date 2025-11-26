@@ -1,1 +1,1 @@
-web: vendor/bin/sail up -p ${PORT:-8000}
+web: vendor/bin/heroku-php-apache2 public/
