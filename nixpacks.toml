@@ -21,11 +21,12 @@ cmds = [
   "npm install && npm run build"
 ]
 
-[start]
-cmd = "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"
-
 [phases.build]
 nixLayers = ["php", "composer", "nodejs"]
 
-[phases.build.nixOverlays]
-"https://github.com/railwayapp/nix-npm-overlay/archive/main.tar.gz" = "nodePackages"
+# Hapus bagian nixOverlays yang bermasalah
+# [phases.build.nixOverlays]
+# "https://github.com/railwayapp/nix-npm-overlay/archive/main.tar.gz" = "nodePackages"
+
+[start]
+cmd = "php artisan migrate --force && php artisan"
